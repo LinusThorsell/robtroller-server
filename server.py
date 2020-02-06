@@ -13,8 +13,6 @@ def getMovements():
 
     return temp_commands
 
-print(getMovements())
-
 # Server
 portnum = 5555
 
@@ -24,9 +22,10 @@ async def reciever(websocket, path):
     print("Websocket connected on: " + str(portnum))
     data = await websocket.recv()
     command_queue.append(data)
+    print(getMovements())
     print(f"< {data} total queue {command_queue}")
 
-# start_server = websockets.serve(reciever, port=portnum)
+start_server = websockets.serve(reciever, port=portnum)
 
-# asyncio.get_event_loop().run_until_complete(start_server)
-# asyncio.get_event_loop().run_forever()
+asyncio.get_event_loop().run_until_complete(start_server)
+asyncio.get_event_loop().run_forever()
