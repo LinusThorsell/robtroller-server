@@ -12,4 +12,4 @@ function sendDataToServer(fullIPAndPort, dataToSend) {
     };
 }
 
-sendDataToServer("ws://192.168.1.167:5555/", "rotatehead(forward);turn(left);move(forward);turn(left);");
+sendDataToServer("ws://localhost:5555/", "rotatehead(forward);turn(left);move(forward);turn(left);");

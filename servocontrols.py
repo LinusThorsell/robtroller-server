@@ -1,4 +1,19 @@
 # Initialize servos
+import threading, time
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BOARD)
+
+def angle_to_pwm(angle):
+    # Figure out how 'wide' each range is
+    leftSpan = 180 - 0
+    rightSpan = 12.5 - 2.5
+
+    # Convert the left range into a 0-1 range (float)
+    valueScaled = float(angle - 0) / float(leftSpan)
+
+    # Convert the 0-1 range into a value in the right range.
+    return 2.5 + (valueScaled * rightSpan)
 
 class Servo:
     "Class used to keep track of the servos"
@@ -7,6 +22,10 @@ class Servo:
         self.name = name
         self.pin = pin
         self.position = init_value
+
+        GPIO.setup(self.pin, GPIO.OUT)
+        self.pwm = GPIO.PWM(self.pin, 50)
+        self.pwm.start(7.5)
 
     def __repr__(self):
         return "[NAME]: " + self.name + " [PIN]: " + str(self.pin) + " [POSITION]: " + str(self.position)
@@ -22,6 +41,10 @@ class Servo:
     def delAngle(self, angle):
         self.position -= angle
 
+    def update_location(self):
+        self.pwm.ChangeDutyCycle(angle_to_pwm(self.position))
+        time.sleep(0.5)
+
     pass
 
 
@@ -33,3 +56,34 @@ servos = [
 ]
 
 print(servos[0])
+
+
+
+command_queue = []
+
+def add_commands(commands):
+    command_queue.extend(commands)
+
+def command_worker():
+
+    def run_next():
+        print(command_queue[0])
+        do_command(command_queue[0])
+        command_queue.pop(0)
+
+    print("[command_worker]: starting...")
+    while(1):
+        time.sleep(5)
+        if (len(command_queue) > 0):
+            print("[command_worker]: running next command...")
+            run_next()
+
+t = threading.Thread(target=command_worker)
+t.start()
+
+
+def do_command(command):
+    if "turn" in command:
+        print("Doing turn" + command)
+    if "base" in command:
+        print("eerrororororrrr")
