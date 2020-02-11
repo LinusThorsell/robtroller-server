@@ -83,7 +83,28 @@ t.start()
 
 
 def do_command(command):
-    if "turn" in command:
-        print("Doing turn" + command)
-    if "base" in command:
-        print("eerrororororrrr")
+    command = command.lower(command)
+    if "move" in command:
+        if "forward" in command:
+            print("move foward")
+        if "backwards" in command:
+            print("move backwards")
+    if "run" in command:
+        if "forward" in command:
+            print("run forward")
+        if "backwards" in command:
+            print("run backwards")
+    if "spin" in command:
+        if "left" in command:
+            print("spin left")
+        if "right" in command:
+            print("spin right")
+    if "head" in command:
+        if "right" in command:
+            print("head look right")
+        if "left" in command:
+            print("head look left")
+        if "center" in command:
+            print("head look straight")
+    if "debug" in command:
+        print("debug command received")

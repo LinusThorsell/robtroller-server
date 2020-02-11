@@ -1,0 +1,6 @@
+Move() inputs [forward, backwards]
+Run() inputs [forward, backwards]
+Spin() inputs [left, right]
+Head() inputs [right, left, center]
+Special() inputs []
+debug() inputs []
