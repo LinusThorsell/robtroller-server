@@ -25,7 +25,7 @@ class Servo:
 
         GPIO.setup(self.pin, GPIO.OUT)
         self.pwm = GPIO.PWM(self.pin, 50)
-        self.pwm.start(7.5)
+        self.pwm.start(0)
 
     def __repr__(self):
         return "[NAME]: " + self.name + " [PIN]: " + str(self.pin) + " [POSITION]: " + str(self.position)
