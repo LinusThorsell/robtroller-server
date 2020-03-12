@@ -44,6 +44,9 @@ class Servo:
     def update_location(self):
         self.pwm.ChangeDutyCycle(angle_to_pwm(self.position))
 
+    def stop_pwm(self):
+        self.pwm.ChangeDutyCycle(0)
+
     pass
 
 
@@ -64,6 +67,8 @@ def update_servos():
     for servo in servos:
         servo.update_location()
     time.sleep(0.5)
+    for servo in servos:
+        servo.stop_pwm()
 
 
 command_queue = ["move(forward)"]
@@ -90,6 +95,7 @@ t.start()
 
 
 def move_forward():
+    print("moving forward now")
     # move forward
     servos[0].setPos(30)
     servos[1].setPos(30)
