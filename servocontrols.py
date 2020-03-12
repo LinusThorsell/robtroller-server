@@ -51,12 +51,12 @@ class Servo:
 
 
 servos = [
-    Servo("LEFT_LEG_1", 3, 100),
-    Servo("LEFT_LEG_2", 5, 100),
+    Servo("LEFT_LEG_1", 3, 120),
+    Servo("LEFT_LEG_2", 5, 120),
     Servo("LEFT_LEG_3", 7, 90),
     Servo("LEFT_LEG_4", 11, 90),
-    Servo("RIGHT_LEG_1", 13, 100),
-    Servo("RIGHT_LEG_2", 15, 100),
+    Servo("RIGHT_LEG_1", 13, 120),
+    Servo("RIGHT_LEG_2", 15, 120),
     Servo("RIGHT_LEG_3", 19, 90),
     Servo("RIGHT_LEG_4", 21, 90),
 ]
@@ -103,13 +103,13 @@ t.start()
 def move_forward():
     print("moving forward now")
     # move forward
-    servos[0].setPos(30)
-    servos[1].setPos(30)
-    servos[2].setPos(150)
-    servos[3].setPos(150)
+    servos[0].setPos(20)
+    servos[1].setPos(20)
+    servos[2].setPos(160)
+    servos[3].setPos(160)
 
-    servos[4].setPos(80)
-    servos[4].setPos(80)
+    servos[4].setPos(70)
+    servos[4].setPos(70)
     servos[4].setPos(90)
     servos[4].setPos(90)
 
