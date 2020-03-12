@@ -7,13 +7,13 @@ GPIO.setmode(GPIO.BOARD)
 def angle_to_pwm(angle):
     # Figure out how 'wide' each range is
     leftSpan = 180 - 0
-    rightSpan = 12.5 - 2.5
+    rightSpan = 10.5 - 3
 
     # Convert the left range into a 0-1 range (float)
     valueScaled = float(angle - 0) / float(leftSpan)
 
     # Convert the 0-1 range into a value in the right range.
-    return 2.5 + (valueScaled * rightSpan)
+    return 3 + (valueScaled * rightSpan)
 
 class Servo:
     "Class used to keep track of the servos"
@@ -43,23 +43,30 @@ class Servo:
 
     def update_location(self):
         self.pwm.ChangeDutyCycle(angle_to_pwm(self.position))
-        time.sleep(0.5)
 
     pass
 
 
 servos = [
-    Servo("HEAD", 1, 90),
-    Servo("LEFT_UPPER_ARM", 2, 90),
-    Servo("LEFT_LOWER_ARM", 3, 60),
-    Servo("LEFT_HAND", 4, 60),
+    Servo("LEFT_LEG_1", 3, 100),
+    Servo("LEFT_LEG_2", 5, 100),
+    Servo("LEFT_LEG_3", 7, 90),
+    Servo("LEFT_LEG_4", 11, 90),
+    Servo("RIGHT_LEG_1", 13, 100),
+    Servo("RIGHT_LEG_2", 15, 100),
+    Servo("RIGHT_LEG_3", 19, 90),
+    Servo("RIGHT_LEG_4", 21, 90),
 ]
 
 print(servos[0])
 
+def update_servos():
+    for servo in servos:
+        servo.update_location()
+    time.sleep(0.5)
 
 
-command_queue = []
+command_queue = ["move(forward)"]
 
 def add_commands(commands):
     command_queue.extend(commands)
@@ -82,11 +89,53 @@ t = threading.Thread(target=command_worker)
 t.start()
 
 
+def move_forward():
+    # move forward
+    servos[0].setPos(30)
+    servos[1].setPos(30)
+    servos[2].setPos(150)
+    servos[3].setPos(150)
+
+    servos[4].setPos(80)
+    servos[4].setPos(80)
+    servos[4].setPos(90)
+    servos[4].setPos(90)
+
+    update_servos()
+
+
+    servos[0].setPos(30)
+    servos[1].setPos(30)
+    servos[2].setPos(150)
+    servos[3].setPos(150)
+
+    servos[4].setPos(60)
+    servos[4].setPos(60)
+    servos[4].setPos(90)
+    servos[4].setPos(90)
+
+    update_servos()
+
+    
+    servos[0].setPos(80)
+    servos[1].setPos(80)
+    servos[2].setPos(90)
+    servos[3].setPos(90)
+
+    servos[4].setPos(80)
+    servos[4].setPos(80)
+    servos[4].setPos(90)
+    servos[4].setPos(90)
+
+    update_servos()
+
+
 def do_command(command):
     command = command.lower(command)
     if "move" in command:
         if "forward" in command:
-            print("move foward")
+            print("move forward")
+            move_forward()
         if "backwards" in command:
             print("move backwards")
     if "run" in command:
