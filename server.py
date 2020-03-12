@@ -3,7 +3,7 @@ import websockets
 import threading
 
 # Data handling
-command_queue = ["move(forward)","move(forward)","move(forward)","move(forward)"]
+command_queue = ["move(forward)","move(backwards)","move(forward)","move(backwards)"]
 
 def getMovements():
 

@@ -97,11 +97,8 @@ t = threading.Thread(target=command_worker)
 t.start()
 
 
-sleepstage1 = 0.15
-sleepstage2 = 0.15
-sleepstage3 = 0.15
-def move_forward():
-    print("moving forward now")
+walkstage = 0.15
+def walk_forward():
     # move forward
     p1.ChangeDutyCycle(8.5)
     p2.ChangeDutyCycle(8.5)
@@ -113,7 +110,7 @@ def move_forward():
     p7.ChangeDutyCycle(6.75)
     p8.ChangeDutyCycle(6.75)
 
-    time.sleep(sleepstage1)
+    time.sleep(walkstage)
 
 
     p1.ChangeDutyCycle(3)
@@ -126,7 +123,7 @@ def move_forward():
     p7.ChangeDutyCycle(6.75)
     p8.ChangeDutyCycle(6.75)
 
-    time.sleep(sleepstage2)
+    time.sleep(walkstage)
 
 
     p1.ChangeDutyCycle(3)
@@ -139,7 +136,7 @@ def move_forward():
     p7.ChangeDutyCycle(6.75)
     p8.ChangeDutyCycle(6.75)
 
-    time.sleep(sleepstage3)
+    time.sleep(walkstage)
 
 
     p1.ChangeDutyCycle(5)
@@ -152,7 +149,7 @@ def move_forward():
     p7.ChangeDutyCycle(6.75)
     p8.ChangeDutyCycle(6.75)
 
-    time.sleep(sleepstage1)
+    time.sleep(walkstage)
 
 
 
@@ -166,7 +163,7 @@ def move_forward():
     p7.ChangeDutyCycle(3.5)
     p8.ChangeDutyCycle(3.5)
 
-    time.sleep(sleepstage2)
+    time.sleep(walkstage)
 
 
     p1.ChangeDutyCycle(9.5)
@@ -179,7 +176,7 @@ def move_forward():
     p7.ChangeDutyCycle(3.5)
     p8.ChangeDutyCycle(3.5)
 
-    time.sleep(sleepstage3)
+    time.sleep(walkstage)
 
 
     p1.ChangeDutyCycle(8.5)
@@ -192,24 +189,102 @@ def move_forward():
     p7.ChangeDutyCycle(6.75)
     p8.ChangeDutyCycle(6.75)
 
-    time.sleep(sleepstage1)
+    time.sleep(walkstage)
+
+    servos_sleep()
+
+def walk_backwards():
+    # move backward
+    p1.ChangeDutyCycle(9.5)
+    p2.ChangeDutyCycle(9.5)
+    p3.ChangeDutyCycle(6.75)
+    p4.ChangeDutyCycle(6.75)
+
+    p5.ChangeDutyCycle(10.5)
+    p6.ChangeDutyCycle(10.5)
+    p7.ChangeDutyCycle(3.5)
+    p8.ChangeDutyCycle(3.5)
+
+    time.sleep(walkstage)
+
+    
+    p1.ChangeDutyCycle(7.5)
+    p2.ChangeDutyCycle(7.5)
+    p3.ChangeDutyCycle(6.75)
+    p4.ChangeDutyCycle(6.75)
+
+    p5.ChangeDutyCycle(10.5)
+    p6.ChangeDutyCycle(10.5)
+    p7.ChangeDutyCycle(3.5)
+    p8.ChangeDutyCycle(3.5)
+
+    time.sleep(walkstage)
+
+
+    p1.ChangeDutyCycle(5)
+    p2.ChangeDutyCycle(5)
+    p3.ChangeDutyCycle(6.75)
+    p4.ChangeDutyCycle(6.75)
+
+    p5.ChangeDutyCycle(5)
+    p6.ChangeDutyCycle(5)
+    p7.ChangeDutyCycle(6.75)
+    p8.ChangeDutyCycle(6.75)
+
+    time.sleep(walkstage)
+
+
+    p1.ChangeDutyCycle(3)
+    p2.ChangeDutyCycle(3)
+    p3.ChangeDutyCycle(10)
+    p4.ChangeDutyCycle(10)
+
+    p5.ChangeDutyCycle(4)
+    p6.ChangeDutyCycle(4)
+    p7.ChangeDutyCycle(6.75)
+    p8.ChangeDutyCycle(6.75)
+
+    time.sleep(walkstage)
+
+    
+    p1.ChangeDutyCycle(3)
+    p2.ChangeDutyCycle(3)
+    p3.ChangeDutyCycle(10)
+    p4.ChangeDutyCycle(10)
+
+    p5.ChangeDutyCycle(6)
+    p6.ChangeDutyCycle(6)
+    p7.ChangeDutyCycle(6.75)
+    p8.ChangeDutyCycle(6.75)
+
+    time.sleep(walkstage)
+
+
+    p1.ChangeDutyCycle(8.5)
+    p2.ChangeDutyCycle(8.5)
+    p3.ChangeDutyCycle(6.75)
+    p4.ChangeDutyCycle(6.75)
+    
+    p5.ChangeDutyCycle(8.5)
+    p6.ChangeDutyCycle(8.5)
+    p7.ChangeDutyCycle(6.75)
+    p8.ChangeDutyCycle(6.75)
+
+    time.sleep(walkstage)
+
 
     servos_sleep()
 
 
 def do_command(command):
     command = command.lower()
-    if "move" in command:
+    if "walk" in command:
         if "forward" in command:
-            print("move forward")
-            move_forward()
+            print("walk forward")
+            walk_forward()
         if "backwards" in command:
             print("move backwards")
-    if "run" in command:
-        if "forward" in command:
-            print("run forward")
-        if "backwards" in command:
-            print("run backwards")
+            walk_backwards()
     if "spin" in command:
         if "left" in command:
             print("spin left")
