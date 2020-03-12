@@ -122,23 +122,23 @@ def move_forward():
     servos[2].setPos(180)
     servos[3].setPos(180)
 
-    servos[4].setPos(40)
-    servos[4].setPos(40)
-    servos[4].setPos(120)
-    servos[4].setPos(120)
+    servos[4].setPos(60)
+    servos[4].setPos(60)
+    servos[4].setPos(80)
+    servos[4].setPos(80)
 
     update_servos()
     time.sleep(1)
     sleep_servos()
 
     
-    servos[0].setPos(70)
-    servos[1].setPos(70)
+    servos[0].setPos(60)
+    servos[1].setPos(60)
     servos[2].setPos(90)
     servos[3].setPos(90)
 
-    servos[4].setPos(70)
-    servos[4].setPos(70)
+    servos[4].setPos(60)
+    servos[4].setPos(60)
     servos[4].setPos(90)
     servos[4].setPos(90)
 
