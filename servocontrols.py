@@ -42,7 +42,7 @@ class Servo:
         self.position -= angle
 
     def update_location(self):
-        self.pwm.ChangeDutyCycle(angle_to_pwm(self.position))
+        self.pwm.ChangeDutyCycle(self.position)
 
     def stop_pwm(self):
         self.pwm.ChangeDutyCycle(0)
@@ -51,14 +51,14 @@ class Servo:
 
 
 servos = [
-    Servo("LEFT_LEG_1", 3, 120),
-    Servo("LEFT_LEG_2", 5, 120),
-    Servo("LEFT_LEG_3", 7, 80),
-    Servo("LEFT_LEG_4", 11, 80),
-    Servo("RIGHT_LEG_1", 13, 120),
-    Servo("RIGHT_LEG_2", 15, 120),
-    Servo("RIGHT_LEG_3", 19, 80),
-    Servo("RIGHT_LEG_4", 21, 80),
+    Servo("LEFT_LEG_1", 3, 8.5),
+    Servo("LEFT_LEG_2", 5, 8.5),
+    Servo("LEFT_LEG_3", 7, 6.75),
+    Servo("LEFT_LEG_4", 11, 6.75),
+    Servo("RIGHT_LEG_1", 13, 8.5),
+    Servo("RIGHT_LEG_2", 15, 8.5),
+    Servo("RIGHT_LEG_3", 19, 6.75),
+    Servo("RIGHT_LEG_4", 21, 6.75),
 ]
 
 print(servos[0])
@@ -103,44 +103,44 @@ t.start()
 def move_forward():
     print("moving forward now")
     # move forward
-    servos[0].setPos(20)
-    servos[1].setPos(20)
-    servos[2].setPos(160)
-    servos[3].setPos(160)
+    servos[0].setPos(3)
+    servos[1].setPos(3)
+    servos[2].setPos(10)
+    servos[3].setPos(10)
 
-    servos[4].setPos(90)
-    servos[4].setPos(90)
-    servos[4].setPos(90)
-    servos[4].setPos(90)
+    servos[4].setPos(6)
+    servos[4].setPos(6)
+    servos[4].setPos(6.75)
+    servos[4].setPos(6.75)
 
     update_servos()
     time.sleep(1)
     sleep_servos()
 
-    servos[0].setPos(0)
-    servos[1].setPos(0)
-    servos[2].setPos(180)
-    servos[3].setPos(180)
+    servos[0].setPos(3)
+    servos[1].setPos(3)
+    servos[2].setPos(10)
+    servos[3].setPos(10)
 
-    servos[4].setPos(60)
-    servos[4].setPos(60)
-    servos[4].setPos(80)
-    servos[4].setPos(80)
+    servos[4].setPos(4)
+    servos[4].setPos(4)
+    servos[4].setPos(6.75)
+    servos[4].setPos(6.75)
 
     update_servos()
     time.sleep(1)
     sleep_servos()
 
     
-    servos[0].setPos(60)
-    servos[1].setPos(60)
-    servos[2].setPos(90)
-    servos[3].setPos(90)
+    servos[0].setPos(5)
+    servos[1].setPos(5)
+    servos[2].setPos(6.75)
+    servos[3].setPos(6.75)
 
-    servos[4].setPos(60)
-    servos[4].setPos(60)
-    servos[4].setPos(90)
-    servos[4].setPos(90)
+    servos[4].setPos(5)
+    servos[4].setPos(5)
+    servos[4].setPos(6.75)
+    servos[4].setPos(6.75)
 
     update_servos()
     time.sleep(3)
