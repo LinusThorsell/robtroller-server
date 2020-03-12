@@ -53,12 +53,12 @@ class Servo:
 servos = [
     Servo("LEFT_LEG_1", 3, 120),
     Servo("LEFT_LEG_2", 5, 120),
-    Servo("LEFT_LEG_3", 7, 90),
-    Servo("LEFT_LEG_4", 11, 90),
+    Servo("LEFT_LEG_3", 7, 80),
+    Servo("LEFT_LEG_4", 11, 80),
     Servo("RIGHT_LEG_1", 13, 120),
     Servo("RIGHT_LEG_2", 15, 120),
-    Servo("RIGHT_LEG_3", 19, 90),
-    Servo("RIGHT_LEG_4", 21, 90),
+    Servo("RIGHT_LEG_3", 19, 80),
+    Servo("RIGHT_LEG_4", 21, 80),
 ]
 
 print(servos[0])
