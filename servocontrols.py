@@ -2,80 +2,61 @@
 import threading, time
 import RPi.GPIO as GPIO
 
+servoPIN1 = 3
+servoPIN2 = 5
+servoPIN3 = 7
+
+servoPIN4 = 11
+servoPIN5 = 13
+servoPIN6 = 15
+
+servoPIN7 = 19
+servoPIN8 = 21
+
 GPIO.setmode(GPIO.BOARD)
+GPIO.setup(servoPIN1, GPIO.OUT)
+GPIO.setup(servoPIN2, GPIO.OUT)
+GPIO.setup(servoPIN3, GPIO.OUT)
 
-def angle_to_pwm(angle):
-    # Figure out how 'wide' each range is
-    leftSpan = 180 - 0
-    rightSpan = 10.5 - 3
+GPIO.setup(servoPIN4, GPIO.OUT)
+GPIO.setup(servoPIN5, GPIO.OUT)
+GPIO.setup(servoPIN6, GPIO.OUT)
 
-    # Convert the left range into a 0-1 range (float)
-    valueScaled = float(angle - 0) / float(leftSpan)
+GPIO.setup(servoPIN7, GPIO.OUT)
+GPIO.setup(servoPIN8, GPIO.OUT)
 
-    # Convert the 0-1 range into a value in the right range.
-    return 3 + (valueScaled * rightSpan)
+p1 = GPIO.PWM(servoPIN1, 50)
+p1.start(0)
+p2 = GPIO.PWM(servoPIN2, 50)
+p2.start(0)
+p3 = GPIO.PWM(servoPIN3, 50)
+p3.start(0)
 
-class Servo:
-    "Class used to keep track of the servos"
+p4 = GPIO.PWM(servoPIN4, 50)
+p4.start(0)
+p5 = GPIO.PWM(servoPIN5, 50)
+p5.start(0)
+p6 = GPIO.PWM(servoPIN6, 50)
+p6.start(0)
 
-    def __init__(self, name, pin, init_value):
-        self.name = name
-        self.pin = pin
-        self.position = init_value
-
-        GPIO.setup(self.pin, GPIO.OUT)
-        self.pwm = GPIO.PWM(self.pin, 50)
-        self.pwm.start(0)
-
-    def __repr__(self):
-        return "[NAME]: " + self.name + " [PIN]: " + str(self.pin) + " [POSITION]: " + str(self.position)
-
-    def __str__(self):
-        return "[NAME]: " + self.name + " [PIN]: " + str(self.pin) + " [POSITION]: " + str(self.position)
-
-    def setPos(self, pos):
-        self.position = pos
-
-    def addAngle(self, angle):
-        self.position += angle
-    def delAngle(self, angle):
-        self.position -= angle
-
-    def update_location(self):
-        self.pwm.ChangeDutyCycle(self.position)
-
-    def stop_pwm(self):
-        self.pwm.ChangeDutyCycle(0)
-
-    pass
+p7 = GPIO.PWM(servoPIN7, 50)
+p7.start(0)
+p8 = GPIO.PWM(servoPIN8, 50)
+p8.start(0)
 
 
-servos = [
-    Servo("LEFT_LEG_1", 3, 8.5),
-    Servo("LEFT_LEG_2", 5, 8.5),
-    Servo("LEFT_LEG_3", 7, 6.75),
-    Servo("LEFT_LEG_4", 11, 6.75),
-    Servo("RIGHT_LEG_1", 13, 8.5),
-    Servo("RIGHT_LEG_2", 15, 8.5),
-    Servo("RIGHT_LEG_3", 19, 6.75),
-    Servo("RIGHT_LEG_4", 21, 6.75),
-]
+# setup inital positions
+p1.ChangeDutyCycle(8.5)
+p2.ChangeDutyCycle(8.5)
+p3.ChangeDutyCycle(6.75)
+p4.ChangeDutyCycle(6.75)
+    
+p5.ChangeDutyCycle(8.5)
+p6.ChangeDutyCycle(8.5)
+p7.ChangeDutyCycle(6.75)
+p8.ChangeDutyCycle(6.75)
 
-print(servos[0])
-
-def update_servos():
-    for servo in servos:
-        servo.update_location()
-
-def sleep_servos():
-    for servo in servos:
-        servo.stop_pwm()
-
-# go to default values
-update_servos()
 time.sleep(1)
-sleep_servos()
-
 
 command_queue = ["move(forward)"]
 
@@ -100,51 +81,103 @@ t = threading.Thread(target=command_worker)
 t.start()
 
 
+sleepstage1 = 0.15
+sleepstage2 = 0.15
+sleepstage3 = 0.15
 def move_forward():
     print("moving forward now")
     # move forward
-    servos[0].setPos(3)
-    servos[1].setPos(3)
-    servos[2].setPos(10)
-    servos[3].setPos(10)
-
-    servos[4].setPos(6)
-    servos[4].setPos(6)
-    servos[4].setPos(6.75)
-    servos[4].setPos(6.75)
-
-    update_servos()
-    time.sleep(1)
-    sleep_servos()
-
-    servos[0].setPos(3)
-    servos[1].setPos(3)
-    servos[2].setPos(10)
-    servos[3].setPos(10)
-
-    servos[4].setPos(4)
-    servos[4].setPos(4)
-    servos[4].setPos(6.75)
-    servos[4].setPos(6.75)
-
-    update_servos()
-    time.sleep(1)
-    sleep_servos()
-
+    p1.ChangeDutyCycle(8.5)
+    p2.ChangeDutyCycle(8.5)
+    p3.ChangeDutyCycle(6.75)
+    p4.ChangeDutyCycle(6.75)
     
-    servos[0].setPos(5)
-    servos[1].setPos(5)
-    servos[2].setPos(6.75)
-    servos[3].setPos(6.75)
+    p5.ChangeDutyCycle(8.5)
+    p6.ChangeDutyCycle(8.5)
+    p7.ChangeDutyCycle(6.75)
+    p8.ChangeDutyCycle(6.75)
 
-    servos[4].setPos(5)
-    servos[4].setPos(5)
-    servos[4].setPos(6.75)
-    servos[4].setPos(6.75)
+    time.sleep(sleepstage1)
 
-    update_servos()
-    time.sleep(3)
-    sleep_servos()
+
+    p1.ChangeDutyCycle(3)
+    p2.ChangeDutyCycle(3)
+    p3.ChangeDutyCycle(10)
+    p4.ChangeDutyCycle(10)
+
+    p5.ChangeDutyCycle(6)
+    p6.ChangeDutyCycle(6)
+    p7.ChangeDutyCycle(6.75)
+    p8.ChangeDutyCycle(6.75)
+
+    time.sleep(sleepstage2)
+
+
+    p1.ChangeDutyCycle(3)
+    p2.ChangeDutyCycle(3)
+    p3.ChangeDutyCycle(10)
+    p4.ChangeDutyCycle(10)
+
+    p5.ChangeDutyCycle(4)
+    p6.ChangeDutyCycle(4)
+    p7.ChangeDutyCycle(6.75)
+    p8.ChangeDutyCycle(6.75)
+
+    time.sleep(sleepstage3)
+
+
+    p1.ChangeDutyCycle(5)
+    p2.ChangeDutyCycle(5)
+    p3.ChangeDutyCycle(6.75)
+    p4.ChangeDutyCycle(6.75)
+
+    p5.ChangeDutyCycle(5)
+    p6.ChangeDutyCycle(5)
+    p7.ChangeDutyCycle(6.75)
+    p8.ChangeDutyCycle(6.75)
+
+    time.sleep(sleepstage1)
+
+
+
+    p1.ChangeDutyCycle(7.5)
+    p2.ChangeDutyCycle(7.5)
+    p3.ChangeDutyCycle(6.75)
+    p4.ChangeDutyCycle(6.75)
+
+    p5.ChangeDutyCycle(10.5)
+    p6.ChangeDutyCycle(10.5)
+    p7.ChangeDutyCycle(3.5)
+    p8.ChangeDutyCycle(3.5)
+
+    time.sleep(sleepstage2)
+
+
+    p1.ChangeDutyCycle(9.5)
+    p2.ChangeDutyCycle(9.5)
+    p3.ChangeDutyCycle(6.75)
+    p4.ChangeDutyCycle(6.75)
+
+    p5.ChangeDutyCycle(10.5)
+    p6.ChangeDutyCycle(10.5)
+    p7.ChangeDutyCycle(3.5)
+    p8.ChangeDutyCycle(3.5)
+
+    time.sleep(sleepstage3)
+
+
+    p1.ChangeDutyCycle(8.5)
+    p2.ChangeDutyCycle(8.5)
+    p3.ChangeDutyCycle(6.75)
+    p4.ChangeDutyCycle(6.75)
+
+    p5.ChangeDutyCycle(8.5)
+    p6.ChangeDutyCycle(8.5)
+    p7.ChangeDutyCycle(6.75)
+    p8.ChangeDutyCycle(6.75)
+
+    time.sleep(sleepstage1)
+    
 
 
 def do_command(command):
