@@ -143,7 +143,7 @@ def move_forward():
     servos[4].setPos(90)
 
     update_servos()
-    time.sleep(1)
+    time.sleep(3)
     sleep_servos()
 
 
