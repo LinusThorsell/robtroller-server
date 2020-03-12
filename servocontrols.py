@@ -58,7 +58,20 @@ p8.ChangeDutyCycle(6.75)
 
 time.sleep(1)
 
-command_queue = ["move(forward)"]
+
+
+def servos_sleep():
+    p1.ChangeDutyCycle(0)
+    p2.ChangeDutyCycle(0)
+    p3.ChangeDutyCycle(0)
+    p4.ChangeDutyCycle(0)
+    
+    p5.ChangeDutyCycle(0)
+    p6.ChangeDutyCycle(0)
+    p7.ChangeDutyCycle(0)
+    p8.ChangeDutyCycle(0)
+
+command_queue = []
 
 def add_commands(commands):
     command_queue.extend(commands)
@@ -177,7 +190,6 @@ def move_forward():
     p8.ChangeDutyCycle(6.75)
 
     time.sleep(sleepstage1)
-    
 
 
 def do_command(command):
