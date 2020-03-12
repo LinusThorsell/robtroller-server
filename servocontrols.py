@@ -276,15 +276,17 @@ def walk_backwards():
     servos_sleep()
 
 
+walk_forward()
+
 def do_command(command):
     command = command.lower()
     if "walk" in command:
         if "forward" in command:
             print("walk forward")
-            walk_forward()
+            # walk_forward()
         if "backwards" in command:
             print("move backwards")
-            walk_backwards()
+            # walk_backwards()
     if "spin" in command:
         if "left" in command:
             print("spin left")
