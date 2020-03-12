@@ -275,6 +275,19 @@ def walk_backwards():
 
     servos_sleep()
 
+def spin():
+    p1.ChangeDutyCycle(9.5)
+    p2.ChangeDutyCycle(9.5)
+    p3.ChangeDutyCycle(6.75)
+    p4.ChangeDutyCycle(6.75)
+
+    p5.ChangeDutyCycle(10.5)
+    p6.ChangeDutyCycle(10.5)
+    p7.ChangeDutyCycle(3.5)
+    p8.ChangeDutyCycle(3.5)
+
+    time.sleep(walkstage)
+
 def do_command(command):
     command = command.lower()
     if "walk" in command:
