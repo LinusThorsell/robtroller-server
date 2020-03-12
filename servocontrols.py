@@ -88,7 +88,7 @@ def command_worker():
 
     print("[command_worker]: starting...")
     while(1):
-        time.sleep(1)
+        time.sleep(2)
         if (len(command_queue) > 0):
             print("[command_worker]: running next command...")
             run_next()
@@ -283,10 +283,10 @@ def do_command(command):
     if "walk" in command:
         if "forward" in command:
             print("walk forward")
-            # walk_forward()
+            walk_forward()
         if "backwards" in command:
             print("move backwards")
-            # walk_backwards()
+            walk_backwards()
     if "spin" in command:
         if "left" in command:
             print("spin left")
