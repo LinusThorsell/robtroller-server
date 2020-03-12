@@ -71,6 +71,9 @@ def servos_sleep():
     p7.ChangeDutyCycle(0)
     p8.ChangeDutyCycle(0)
 
+servos_sleep()
+
+
 command_queue = []
 
 def add_commands(commands):
@@ -85,7 +88,7 @@ def command_worker():
 
     print("[command_worker]: starting...")
     while(1):
-        time.sleep(5)
+        time.sleep(1)
         if (len(command_queue) > 0):
             print("[command_worker]: running next command...")
             run_next()
@@ -190,6 +193,8 @@ def move_forward():
     p8.ChangeDutyCycle(6.75)
 
     time.sleep(sleepstage1)
+
+    servos_sleep()
 
 
 def do_command(command):
