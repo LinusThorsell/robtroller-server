@@ -275,9 +275,6 @@ def walk_backwards():
 
     servos_sleep()
 
-
-walk_forward()
-
 def do_command(command):
     command = command.lower()
     if "walk" in command:
