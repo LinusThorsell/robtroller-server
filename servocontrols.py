@@ -71,7 +71,10 @@ def sleep_servos():
     for servo in servos:
         servo.stop_pwm()
 
+# go to default values
 update_servos()
+time.sleep(0.5)
+sleep_servos()
 
 
 command_queue = ["move(forward)"]
@@ -121,8 +124,8 @@ def move_forward():
 
     servos[4].setPos(60)
     servos[4].setPos(60)
-    servos[4].setPos(90)
-    servos[4].setPos(90)
+    servos[4].setPos(120)
+    servos[4].setPos(120)
 
     update_servos()
     time.sleep(0.5)
