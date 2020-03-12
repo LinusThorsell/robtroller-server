@@ -73,7 +73,7 @@ def sleep_servos():
 
 # go to default values
 update_servos()
-time.sleep(0.5)
+time.sleep(1)
 sleep_servos()
 
 
@@ -114,7 +114,7 @@ def move_forward():
     servos[4].setPos(90)
 
     update_servos()
-    time.sleep(0.5)
+    time.sleep(1)
     sleep_servos()
 
     servos[0].setPos(30)
@@ -128,7 +128,7 @@ def move_forward():
     servos[4].setPos(120)
 
     update_servos()
-    time.sleep(0.5)
+    time.sleep(1)
     sleep_servos()
 
     
@@ -143,7 +143,7 @@ def move_forward():
     servos[4].setPos(90)
 
     update_servos()
-    time.sleep(0.5)
+    time.sleep(1)
     sleep_servos()
 
 
