@@ -70,6 +70,8 @@ def update_servos():
     for servo in servos:
         servo.stop_pwm()
 
+update_servos()
+
 
 command_queue = ["move(forward)"]
 
@@ -137,7 +139,7 @@ def move_forward():
 
 
 def do_command(command):
-    command = command.lower(command)
+    command = command.lower()
     if "move" in command:
         if "forward" in command:
             print("move forward")
