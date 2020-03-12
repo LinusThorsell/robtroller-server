@@ -66,7 +66,8 @@ print(servos[0])
 def update_servos():
     for servo in servos:
         servo.update_location()
-    time.sleep(0.5)
+
+def sleep_servos():
     for servo in servos:
         servo.stop_pwm()
 
@@ -110,7 +111,8 @@ def move_forward():
     servos[4].setPos(90)
 
     update_servos()
-
+    time.sleep(0.5)
+    sleep_servos()
 
     servos[0].setPos(30)
     servos[1].setPos(30)
@@ -123,6 +125,8 @@ def move_forward():
     servos[4].setPos(90)
 
     update_servos()
+    time.sleep(0.5)
+    sleep_servos()
 
     
     servos[0].setPos(80)
@@ -136,6 +140,8 @@ def move_forward():
     servos[4].setPos(90)
 
     update_servos()
+    time.sleep(0.5)
+    sleep_servos()
 
 
 def do_command(command):
